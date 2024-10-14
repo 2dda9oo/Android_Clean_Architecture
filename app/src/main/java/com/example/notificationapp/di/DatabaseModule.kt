@@ -2,6 +2,7 @@ package com.example.notificationapp.di
 
 import android.app.Application
 import androidx.room.Room
+import com.example.data.dao.SampleDao
 import com.example.data.db.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -17,5 +18,12 @@ class DatabaseModule {
     @Provides
     fun provideAppDatabase(application: Application): AppDatabase {
         return Room.databaseBuilder(application, AppDatabase::class.java, "appDatabase").build()
+    }
+
+    //임시 Dao 의존성 설정 - sampleDao/sampleEntity
+    @Singleton
+    @Provides
+    fun provideSampleDao(appDatabase: AppDatabase): SampleDao {
+        return appDatabase.sampleDao()
     }
 }

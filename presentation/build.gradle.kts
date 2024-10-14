@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.ksp)
+    id(libs.plugins.dagger.hilt.android.get().pluginId)
+    id(libs.plugins.devtools.ksp.get().pluginId)
+    id(libs.plugins.kotlin.parcelize.get().pluginId)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -32,6 +34,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    //view binding gradle 설정
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -45,6 +52,13 @@ dependencies {
     // ViewModel
     implementation(libs.androidx.lifeCycle.viewmodel)
     implementation(libs.androidx.lifeCycle.livedata)
+
+    // navigation
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.navigation.fragment)
+
+    //recyclerview
+    implementation(libs.androidx.recyclerview)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

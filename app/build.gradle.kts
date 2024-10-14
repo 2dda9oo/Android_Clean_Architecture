@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.ksp)
+    id(libs.plugins.dagger.hilt.android.get().pluginId)
+    id(libs.plugins.devtools.ksp.get().pluginId)
+    id(libs.plugins.kotlin.parcelize.get().pluginId)
 }
 
 android {
@@ -34,11 +35,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    //view binding gradle 설정
-    buildFeatures{
-        viewBinding = true
     }
 }
 
